@@ -4,6 +4,11 @@
 ## https://www.eosstudio.io/
 ## https://app.eosstudio.io/
 # For iOS/Linux, EOS Studio can be download and install into the machine directly, it also need Docker installed to run.  For more information, need to google it.
+#
+# -----------------------------------------------------------------------------------
+# Interesting Medium article explaning the basic architecture of EOS blockchain:
+# https://medium.com/fueled-engineering/exploring-the-eos-multi-index-database-557769b1b7a6
+#
 # -------------------------------------------------------------------------------------------------------------------
 # Setting up EOS studio project: 
 # 1. When creating a EOS project several things needs to take into considerations:
@@ -41,3 +46,46 @@
 ##          void hi(dosomething);
 ## };
 # 
+# ------------------------------------------------------------------------------------
+#
+# To compile the code, click on the hammer icon
+# Whearas to deploy the code, click on the ship icon
+#
+# ------------------------------------------------------------------------------------
+#
+# Tables are used to store persistent data in EOS.  That is to simply put, if global variables in smart contract does not retain its updated value after it has run through, thus everytime the program runs, it will be the value that it initialised as.  Therefore in order to keep any modifications, we need to store it in a table instead.
+#
+# A Table in EOS, is actually a C++ struct.  An example:
+# struct{
+#    id:
+#    name:
+#    address:
+# };
+#
+# the struct are then initialise and turn into a table.  an example of instantiate struct:
+#
+# People (name of the newly initialised struct/ table)
+# id  |  name  |  address
+# -------------------------
+# 1   |  alice |  alice@gmail.com
+# 2   |  bob   |  bob@gmail.com
+#
+# Once a table is created we can only: add, remove, modify the data.  As well as several other functions such as search and lookup.  That is once an instance is instantiated, we can't change the paramaters in the struct, unless we delete the instance, modify the struct and then re-instantiate the instance.
+# Therefore it is important to remember in the design phase, is consider all the parameters and data needed to be stored in the table.
+# When creating a table, we must include 'Primary Key' into it.  A Primary Key that act as a unique identifier, thus it won't have any duplicate and cause confucsion.  In addition, we must let EOS know which coloum is the designated Primary Key, in the example above, id would be the designated primary key.
+#
+# when a table is created it can access by:
+# people(accounts, scope)
+# where:
+# account : where the table is hosted, i.e. the account the smart contract is deployed to where the table is.
+# scope : the view in which how to view the table.  Three different way to access table using scope:
+##  1. Global: 1 table with 1 scope. Always access the same table everytime
+##  2. Groups: 1 account with multiple scopes.  I.e. People account could have two tables to store data, male and female, but all belows to the People account.  Thus depends on the scope being called, we can view and/or mainuplate either male, female or both data in the table.  To use this it can be called using something like:
+###     people(people, male);
+###     people(people, female);
+##  3. Individual: using the sender account name or account of interest as the scope to call the table. for example:
+### people(people,requester-wallet-address)
+#
+# -------------------------------------------------------------------------------------
+#
+#
