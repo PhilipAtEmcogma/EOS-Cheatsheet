@@ -88,4 +88,20 @@
 #
 # -------------------------------------------------------------------------------------
 #
+# NOTE: ACTION keyword is use to declare the function in the smart contract, but the actul function itslef is declare like a normal C++ function.  for example:
+##  In the helloworld.hpp we declare the function using:   
+###  ACTION addpet();
+##  While in the main.cpp file, we code the function using:  
+###  void addpet(){}       
+#
+# -------------------------------------------------------------------------------------
+#
+# To let only a certain person to interact with item in the table, we can use:
+## require_auth();  //e.g. require_auth(owner)
+# To check does the action about to be perform meet the logcial requirement before proceeding with the action (e.g. item exist in the table before modification is allowed), we can use the check function.  e.g.:
+##  eosio::check(pet_itr != pets.end(), "The ID you have enetered does not exit") 
+#
+# ------------------------------------------------------------------------------------
+#
+# In EOSIO studio there's a existing project called eosio.token, in whcih it has all the functions needed to make a dapp, as well as creating tokens
 #
