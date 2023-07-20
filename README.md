@@ -21,8 +21,8 @@
 #   To setup EOS cli without using using EOS studio, use the following guideline from EOS's official webpage:
 # https://developers.eos.io/welcome/v2.0/welcome-to-eosio/index
 # https://developers.eos.io/welcome/v2.0/getting-started-guide/local-development-environment/index
-# NOTE: as of writing this cheatsheet (July 2023), the guide suggested EOS can be setup using Ubuntu 20.4, Ubuntu 18.04 and UBUNTU 16.04.  However, when I tried to install all needed libarys to get the node running using UBUNTU 20.04 (latest at the time of writing), a lot of support libraries are obseleted and/or does not support UBUNTU 20.04.  Thus will retry the installing process using UBUNTU 18.04.  
-# UPDATE on NOTE above: I tried reinstalling the eos cli environment using Ubuntu 18.04, it seems to be able to install all the libraries and set up the environment correctly, without any warnings and errors.  Thus, I personally suggest to work on Ubuntu 18.04, and hope in the future the community will update the code to support lastest version of Ubuntu.
+# NOTE: as of writing this cheatsheet (July 2023), the guide suggested EOS can be setup using Ubuntu 20.4, Ubuntu 18.04 and UBUNTU 16.04.  However, when I tried to install all needed libarys to get the node running using Ubuntu 20.04 (latest Ubuntu version at the time of writing), a lot of support libraries are obseleted and/or does not support Ubuntu 20.04.  Thus will retry the installing process using Ubuntu 18.04.  
+# UPDATE on NOTE above: I tried reinstalling the EOS cli environment using Ubuntu 18.04, it seems to be able to install all the libraries and set up the environment correctly, without any warnings and errors.  Thus, I personally suggest to work on Ubuntu 18.04, and hope in the future the community will update the code to support lastest version of Ubuntu.
 # -------------------------------------------------------------------------------------------------------------------
 # Setting up EOS studio project: 
 # 1. When creating a EOS project several things needs to take into considerations:
