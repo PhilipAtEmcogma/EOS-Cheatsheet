@@ -21,13 +21,43 @@
 #   To setup EOS cli without using using EOS studio, use the following guideline from EOS's official webpage:
 # https://developers.eos.io/welcome/v2.0/welcome-to-eosio/index
 # https://developers.eos.io/welcome/v2.0/getting-started-guide/local-development-environment/index
-# NOTE: as of writing this cheatsheet (July 2023), the guide suggested EOS can be setup using Ubuntu 20.4, Ubuntu 18.04 and UBUNTU 16.04.  However, when I tried to install all needed libarys to get the node running using Ubuntu 20.04 (latest Ubuntu version at the time of writing), a lot of support libraries are obseleted and/or does not support Ubuntu 20.04.  Thus will retry the installing process using Ubuntu 18.04.  
+# NOTE: as of writing this cheatsheet (July 2023), the guide suggested EOS can be setup using Ubuntu 20.4, Ubuntu 18.04 and UBUNTU 16.04.  However, when I tried to install the EOS environment and get nodeos running using Ubuntu 20.04 (latest Ubuntu version at the time of writing), a lot of support libraries are obseleted and/or does not support Ubuntu 20.04.  Thus will retry the installing process using Ubuntu 18.04.  
 # UPDATE on NOTE above: I tried reinstalling the EOS cli environment using Ubuntu 18.04, it seems to be able to install all the libraries and set up the environment correctly, without any warnings and errors.  Thus, I personally suggest to work on Ubuntu 18.04, and hope in the future the community will update the code to support lastest version of Ubuntu.
+# UPDATE 2: As of July 2023 although I can install the EOS enviornment on the WSL version of Ubuntu 18.04, I still can't get nodeos to run on it.  Therefore, if whoever is reading this wants to get EOS environment working, I would suggest you to do it on a Apple or Linux OS machine.  Unless in the future the community had work around a solution to get everything working on WSL image of a Linux Machine, otherwise using a Window machine work with EOS is HIGHLY NOT RECOMMANDED.
 #
 # --------------------------------------------------------------------------------------
 #
 # To create a wallet, after EOS cli environment had been setup (use guide above to help setup, if needed), use the following:
 ##  cleos wallet create --to-console
+# The command above will also display the password for the default wallet created using the cleos command.  Need to save the password safely somewhere, if we want to interact the wallet after creating it.
+#
+# IMPORTANT: If you want to use the wallet you've just created for REAL transaction with REAL tokens and monatery values, PLEASE DO NOT SAFE THE PASSWORD ANYWHERE THAT ARE EASILY ACCESSIBLE BY THE PUBLIC. OTHERWISE YOU'LL LOOSE THEM.  The password for the wallet I saved in this project, I created the wallet with the intention of using testnet tokens, which have no monatery values.
+#
+# After creating the wallet, open the wallet using:
+##  cleos wallet open
+# After opening the wallet, we can list all the wallets created using:
+## cleos wallet list
+# To unlock a wallet use the following:
+## cleos wallet unlock
+### NOTE: code above unlocks the default wallet (when prompt, we need to insert the password for the wallet to unlock it).  If you created multiple wallet and want to open other wallet that isn't the default wallet, use the following:
+## cleos wallet unlock -n <NAME_OF_WALLET>
+### NOTE: Replace <NAME_OF_WALLET> with the name of the wallet you want to unlock, e.g/ cleos wallet unlock -n tablewallet
+#
+# Creating an EOS account and add keypair to the wallet, by using the following:
+##  cleos create key --to-console
+# Import the keypair to the wallet, which requires to add the eosio account.  Use the following code to import keypair, use the privatekey (from creating keypair just above):
+## cleos wallet import
+### NOTE: when performing this step, make sure the to unlock the wallet we want to import the account to first.
+#
+# After importing the keypair from above we also need to import the EOSIO Development key, which can be done using the following:
+##  cleos wallet import
+##  use the folloiwng private key as the Development Key: 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
+#
+# Creating an account, by using the following:
+##  cleos create account eosio phil EOS8jM4zNksEQURyyDta4U6Hi3brisLXcqi3U5SvatieC8RNVe5GT EOS8jM4zNksEQURyyDta4U6Hi3brisLXcqi3U5SvatieC8RNVe5GT
+### NOTE: when creating an account, we need to specify the account to pay for the creation of the account.  If this is the first time creating an account, EOS addmin account pay for it, thus we use the name 'eosio'.
+### NOTE2: phil is the name of the account we just created using cleos create account eosio phil
+### NOTE3: The first key is the public key for the active permission, the second key is the public key owner permission. In the code above I use public key from the owner account I created from the step above, because I'm experimenting EOS developmet environment on a local node.  Thus if you want to create a real project on the mainnet or testnet, you should provide two separate public key (one for active wallet and the other the owner wallet)
 #
 # -------------------------------------------------------------------------------------------------------------------
 # Setting up EOS studio project: 

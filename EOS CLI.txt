@@ -1,1 +1,5 @@
 CLI Wallet Password: "PW5KDne1isudSESrSbL3vNvfr6vx8SW87GxbK8J5EAgUiRf3Ybmj4"
+
+Keypairs for created EOS account:
+	Private key: 5JHnV8cFhN4Svv7VNRSVbPJXLY7a9W7TC1F9R86wMJLN6hcqGnA
+	Public key: EOS8jM4zNksEQURyyDta4U6Hi3brisLXcqi3U5SvatieC8RNVe5GT
